@@ -38,7 +38,7 @@ method_test = {}
 for test in tests:
     for key,value in methods.items():
         if test.find(key)!=-1:
-            method_test["@Test" + test.replace('\n','\t')] = value.strip('\n')
+            method_test["@Test" + test.replace('\n','\t')] = value.replace('\n','\t')
     
 for key , value in method_test.items():
     print(key,value)
