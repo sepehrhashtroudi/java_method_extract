@@ -1,0 +1,4 @@
+public boolean atLeast(final JavaVersion requiredVersion) {	    return this.value >= requiredVersion.value;	}
+static JavaVersion getJavaVersion(final String nom) {	    return get(nom);	}
+static JavaVersion get(final String nom) {	    if ("0.9".equals(nom)) {	        return JAVA_0_9;	    } else if ("1.1".equals(nom)) {	        return JAVA_1_1;	    } else if ("1.2".equals(nom)) {	        return JAVA_1_2;	    } else if ("1.3".equals(nom)) {	        return JAVA_1_3;	    } else if ("1.4".equals(nom)) {	        return JAVA_1_4;	    } else if ("1.5".equals(nom)) {	        return JAVA_1_5;	    } else if ("1.6".equals(nom)) {	        return JAVA_1_6;	    } else if ("1.7".equals(nom)) {	        return JAVA_1_7;	    } else if ("1.8".equals(nom)) {	        return JAVA_1_8;	    } else {	        return null;	    }	}
+@Override	public String toString() {	    return name;	}
