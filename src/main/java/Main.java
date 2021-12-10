@@ -34,9 +34,8 @@ public class Main {
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
         }
-        File file=new File("./methods/"+pathname);
-        file.delete();
-        FileWriter fw = new FileWriter("./methods/" + pathname , true);
+
+        FileWriter fw = new FileWriter("./methods/" + pathname , false);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter out = new PrintWriter(bw);
 
@@ -49,9 +48,8 @@ public class Main {
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
         }
-        file=new File("./method_names/"+pathname);
-        file.delete();
-        FileWriter m_fw = new FileWriter("./method_names/" + pathname , true);
+
+        FileWriter m_fw = new FileWriter("./method_names/" + pathname , false);
         BufferedWriter m_bw = new BufferedWriter(m_fw);
         PrintWriter m_out = new PrintWriter(m_bw);
 
