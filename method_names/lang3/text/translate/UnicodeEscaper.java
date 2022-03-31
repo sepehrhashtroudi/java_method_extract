@@ -1,3 +1,4 @@
+UnicodeEscaper
 public static UnicodeEscaper below(final int codepoint)
 public static UnicodeEscaper above(final int codepoint)
 public static UnicodeEscaper outsideOf(final int codepointLow, final int codepointHigh)

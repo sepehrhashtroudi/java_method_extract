@@ -1,17 +1,17 @@
-public static CharRange is(final char ch) {	    return new CharRange(ch, ch, false);	}
-public static CharRange isNot(final char ch) {	    return new CharRange(ch, ch, true);	}
-public static CharRange isIn(final char start, final char end) {	    return new CharRange(start, end, false);	}
-public static CharRange isNotIn(final char start, final char end) {	    return new CharRange(start, end, true);	}
-public char getStart() {	    return this.start;	}
-public char getEnd() {	    return this.end;	}
-public boolean isNegated() {	    return negated;	}
-public boolean contains(final char ch) {	    return (ch >= start && ch <= end) != negated;	}
-public boolean contains(final CharRange range) {	    if (range == null) {	        throw new IllegalArgumentException("The Range must not be null");	    }	    if (negated) {	        if (range.negated) {	            return start >= range.start && end <= range.end;	        }	        return range.end < start || range.start > end;	    }	    if (range.negated) {	        return start == 0 && end == Character.MAX_VALUE;	    }	    return start <= range.start && end >= range.end;	}
-@Override	public boolean equals(final Object obj) {	    if (obj == this) {	        return true;	    }	    if (obj instanceof CharRange == false) {	        return false;	    }	    final CharRange other = (CharRange) obj;	    return start == other.start && end == other.end && negated == other.negated;	}
-@Override	public int hashCode() {	    return 83 + start + 7 * end + (negated ? 1 : 0);	}
-@Override	public String toString() {	    if (iToString == null) {	        final StringBuilder buf = new StringBuilder(4);	        if (isNegated()) {	            buf.append('^');	        }	        buf.append(start);	        if (start != end) {	            buf.append('-');	            buf.append(end);	        }	        iToString = buf.toString();	    }	    return iToString;	}
-@Override	public Iterator<Character> iterator() {	    return new CharacterIterator(this);	}
-private void prepareNext() {	    if (range.negated) {	        if (current == Character.MAX_VALUE) {	            hasNext = false;	        } else if (current + 1 == range.start) {	            if (range.end == Character.MAX_VALUE) {	                hasNext = false;	            } else {	                current = (char) (range.end + 1);	            }	        } else {	            current = (char) (current + 1);	        }	    } else if (current < range.end) {	        current = (char) (current + 1);	    } else {	        hasNext = false;	    }	}
-@Override	public boolean hasNext() {	    return hasNext;	}
-@Override	public Character next() {	    if (hasNext == false) {	        throw new NoSuchElementException();	    }	    final char cur = current;	    prepareNext();	    return Character.valueOf(cur);	}
-@Override	public void remove() {	    throw new UnsupportedOperationException();	}
+public static CharRange is(final char ch) { [EOL]     return new CharRange(ch, ch, false); [EOL] }
+public static CharRange isNot(final char ch) { [EOL]     return new CharRange(ch, ch, true); [EOL] }
+public static CharRange isIn(final char start, final char end) { [EOL]     return new CharRange(start, end, false); [EOL] }
+public static CharRange isNotIn(final char start, final char end) { [EOL]     return new CharRange(start, end, true); [EOL] }
+public char getStart() { [EOL]     return this.start; [EOL] }
+public char getEnd() { [EOL]     return this.end; [EOL] }
+public boolean isNegated() { [EOL]     return negated; [EOL] }
+public boolean contains(final char ch) { [EOL]     return (ch >= start && ch <= end) != negated; [EOL] }
+public boolean contains(final CharRange range) { [EOL]     if (range == null) { [EOL]         throw new IllegalArgumentException("The Range must not be null"); [EOL]     } [EOL]     if (negated) { [EOL]         if (range.negated) { [EOL]             return start >= range.start && end <= range.end; [EOL]         } [EOL]         return range.end < start || range.start > end; [EOL]     } [EOL]     if (range.negated) { [EOL]         return start == 0 && end == Character.MAX_VALUE; [EOL]     } [EOL]     return start <= range.start && end >= range.end; [EOL] }
+@Override [EOL] public boolean equals(final Object obj) { [EOL]     if (obj == this) { [EOL]         return true; [EOL]     } [EOL]     if (obj instanceof CharRange == false) { [EOL]         return false; [EOL]     } [EOL]     final CharRange other = (CharRange) obj; [EOL]     return start == other.start && end == other.end && negated == other.negated; [EOL] }
+@Override [EOL] public int hashCode() { [EOL]     return 83 + start + 7 * end + (negated ? 1 : 0); [EOL] }
+@Override [EOL] public String toString() { [EOL]     if (iToString == null) { [EOL]         final StringBuilder buf = new StringBuilder(4); [EOL]         if (isNegated()) { [EOL]             buf.append('^'); [EOL]         } [EOL]         buf.append(start); [EOL]         if (start != end) { [EOL]             buf.append('-'); [EOL]             buf.append(end); [EOL]         } [EOL]         iToString = buf.toString(); [EOL]     } [EOL]     return iToString; [EOL] }
+@Override [EOL] public Iterator<Character> iterator() { [EOL]     return new CharacterIterator(this); [EOL] }
+private void prepareNext() { [EOL]     if (range.negated) { [EOL]         if (current == Character.MAX_VALUE) { [EOL]             hasNext = false; [EOL]         } else if (current + 1 == range.start) { [EOL]             if (range.end == Character.MAX_VALUE) { [EOL]                 hasNext = false; [EOL]             } else { [EOL]                 current = (char) (range.end + 1); [EOL]             } [EOL]         } else { [EOL]             current = (char) (current + 1); [EOL]         } [EOL]     } else if (current < range.end) { [EOL]         current = (char) (current + 1); [EOL]     } else { [EOL]         hasNext = false; [EOL]     } [EOL] }
+@Override [EOL] public boolean hasNext() { [EOL]     return hasNext; [EOL] }
+@Override [EOL] public Character next() { [EOL]     if (hasNext == false) { [EOL]         throw new NoSuchElementException(); [EOL]     } [EOL]     final char cur = current; [EOL]     prepareNext(); [EOL]     return Character.valueOf(cur); [EOL] }
+@Override [EOL] public void remove() { [EOL]     throw new UnsupportedOperationException(); [EOL] }

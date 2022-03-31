@@ -1,3 +1,4 @@
+TimedSemaphore
 public final synchronized int getLimit()
 public final synchronized void setLimit(final int limit)
 public synchronized void shutdown()

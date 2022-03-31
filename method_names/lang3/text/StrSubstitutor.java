@@ -1,3 +1,4 @@
+StrSubstitutor
 public static String replace(final Object source, final Map<String, V> valueMap)
 public static String replace(final Object source, final Map<String, V> valueMap, final String prefix, final String suffix)
 public static String replace(final Object source, final Properties valueProperties)

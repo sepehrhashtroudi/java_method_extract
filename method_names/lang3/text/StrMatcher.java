@@ -1,3 +1,9 @@
+CharSetMatcher
+CharMatcher
+StringMatcher
+NoMatcher
+TrimMatcher
+StrMatcher
 public static StrMatcher commaMatcher()
 public static StrMatcher tabMatcher()
 public static StrMatcher spaceMatcher()

@@ -1,15 +1,15 @@
-public final synchronized int getLimit() {	    return limit;	}
-public final synchronized void setLimit(final int limit) {	    this.limit = limit;	}
-public synchronized void shutdown() {	    if (!shutdown) {	        if (ownExecutor) {	            getExecutorService().shutdownNow();	        }	        if (task != null) {	            task.cancel(false);	        }	        shutdown = true;	    }	}
-public synchronized boolean isShutdown() {	    return shutdown;	}
-public synchronized void acquire() throws InterruptedException {	    if (isShutdown()) {	        throw new IllegalStateException("TimedSemaphore is shut down!");	    }	    if (task == null) {	        task = startTimer();	    }	    boolean canPass = false;	    do {	        canPass = getLimit() <= NO_LIMIT || acquireCount < getLimit();	        if (!canPass) {	            wait();	        } else {	            acquireCount++;	        }	    } while (!canPass);	}
-public synchronized int getLastAcquiresPerPeriod() {	    return lastCallsPerPeriod;	}
-public synchronized int getAcquireCount() {	    return acquireCount;	}
-public synchronized int getAvailablePermits() {	    return getLimit() - getAcquireCount();	}
-public synchronized double getAverageCallsPerPeriod() {	    return periodCount == 0 ? 0 : (double) totalAcquireCount / (double) periodCount;	}
-public long getPeriod() {	    return period;	}
-public TimeUnit getUnit() {	    return unit;	}
-protected ScheduledExecutorService getExecutorService() {	    return executorService;	}
-@Override	public void run() {	    endOfPeriod();	}
-protected ScheduledFuture<?> startTimer() {	    return getExecutorService().scheduleAtFixedRate(new Runnable() {		        @Override	        public void run() {	            endOfPeriod();	        }	    }, getPeriod(), getPeriod(), getUnit());	}
-synchronized void endOfPeriod() {	    lastCallsPerPeriod = acquireCount;	    totalAcquireCount += acquireCount;	    periodCount++;	    acquireCount = 0;	    notifyAll();	}
+public final synchronized int getLimit() { [EOL]     return limit; [EOL] }
+public final synchronized void setLimit(final int limit) { [EOL]     this.limit = limit; [EOL] }
+public synchronized void shutdown() { [EOL]     if (!shutdown) { [EOL]         if (ownExecutor) { [EOL]             getExecutorService().shutdownNow(); [EOL]         } [EOL]         if (task != null) { [EOL]             task.cancel(false); [EOL]         } [EOL]         shutdown = true; [EOL]     } [EOL] }
+public synchronized boolean isShutdown() { [EOL]     return shutdown; [EOL] }
+public synchronized void acquire() throws InterruptedException { [EOL]     if (isShutdown()) { [EOL]         throw new IllegalStateException("TimedSemaphore is shut down!"); [EOL]     } [EOL]     if (task == null) { [EOL]         task = startTimer(); [EOL]     } [EOL]     boolean canPass = false; [EOL]     do { [EOL]         canPass = getLimit() <= NO_LIMIT || acquireCount < getLimit(); [EOL]         if (!canPass) { [EOL]             wait(); [EOL]         } else { [EOL]             acquireCount++; [EOL]         } [EOL]     } while (!canPass); [EOL] }
+public synchronized int getLastAcquiresPerPeriod() { [EOL]     return lastCallsPerPeriod; [EOL] }
+public synchronized int getAcquireCount() { [EOL]     return acquireCount; [EOL] }
+public synchronized int getAvailablePermits() { [EOL]     return getLimit() - getAcquireCount(); [EOL] }
+public synchronized double getAverageCallsPerPeriod() { [EOL]     return periodCount == 0 ? 0 : (double) totalAcquireCount / (double) periodCount; [EOL] }
+public long getPeriod() { [EOL]     return period; [EOL] }
+public TimeUnit getUnit() { [EOL]     return unit; [EOL] }
+protected ScheduledExecutorService getExecutorService() { [EOL]     return executorService; [EOL] }
+@Override [EOL] public void run() { [EOL]     endOfPeriod(); [EOL] }
+protected ScheduledFuture<?> startTimer() { [EOL]     return getExecutorService().scheduleAtFixedRate(new Runnable() { [EOL]  [EOL]         @Override [EOL]         public void run() { [EOL]             endOfPeriod(); [EOL]         } [EOL]     }, getPeriod(), getPeriod(), getUnit()); [EOL] }
+synchronized void endOfPeriod() { [EOL]     lastCallsPerPeriod = acquireCount; [EOL]     totalAcquireCount += acquireCount; [EOL]     periodCount++; [EOL]     acquireCount = 0; [EOL]     notifyAll(); [EOL] }

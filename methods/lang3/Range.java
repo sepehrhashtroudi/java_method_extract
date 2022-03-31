@@ -1,24 +1,24 @@
-public static <T extends Comparable<T>> Range<T> is(final T element) {	    return between(element, element, null);	}
-public static <T> Range<T> is(final T element, final Comparator<T> comparator) {	    return between(element, element, comparator);	}
-public static <T extends Comparable<T>> Range<T> between(final T fromInclusive, final T toInclusive) {	    return between(fromInclusive, toInclusive, null);	}
-public static <T> Range<T> between(final T fromInclusive, final T toInclusive, final Comparator<T> comparator) {	    return new Range<T>(fromInclusive, toInclusive, comparator);	}
-public T getMinimum() {	    return minimum;	}
-public T getMaximum() {	    return maximum;	}
-public Comparator<T> getComparator() {	    return comparator;	}
-public boolean isNaturalOrdering() {	    return comparator == ComparableComparator.INSTANCE;	}
-public boolean contains(final T element) {	    if (element == null) {	        return false;	    }	    return comparator.compare(element, minimum) > -1 && comparator.compare(element, maximum) < 1;	}
-public boolean isAfter(final T element) {	    if (element == null) {	        return false;	    }	    return comparator.compare(element, minimum) < 0;	}
-public boolean isStartedBy(final T element) {	    if (element == null) {	        return false;	    }	    return comparator.compare(element, minimum) == 0;	}
-public boolean isEndedBy(final T element) {	    if (element == null) {	        return false;	    }	    return comparator.compare(element, maximum) == 0;	}
-public boolean isBefore(final T element) {	    if (element == null) {	        return false;	    }	    return comparator.compare(element, maximum) > 0;	}
-public int elementCompareTo(final T element) {	    if (element == null) {	        throw new NullPointerException("Element is null");	    }	    if (isAfter(element)) {	        return -1;	    } else if (isBefore(element)) {	        return 1;	    } else {	        return 0;	    }	}
-public boolean containsRange(final Range<T> otherRange) {	    if (otherRange == null) {	        return false;	    }	    return contains(otherRange.minimum) && contains(otherRange.maximum);	}
-public boolean isAfterRange(final Range<T> otherRange) {	    if (otherRange == null) {	        return false;	    }	    return isAfter(otherRange.maximum);	}
-public boolean isOverlappedBy(final Range<T> otherRange) {	    if (otherRange == null) {	        return false;	    }	    return otherRange.contains(minimum) || otherRange.contains(maximum) || contains(otherRange.minimum);	}
-public boolean isBeforeRange(final Range<T> otherRange) {	    if (otherRange == null) {	        return false;	    }	    return isBefore(otherRange.minimum);	}
-public Range<T> intersectionWith(final Range<T> other) {	    if (!this.isOverlappedBy(other)) {	        throw new IllegalArgumentException(String.format("Cannot calculate intersection with non-overlapping range %s", other));	    }	    if (this.equals(other)) {	        return this;	    }	    final T min = getComparator().compare(minimum, other.minimum) < 0 ? other.minimum : minimum;	    final T max = getComparator().compare(maximum, other.maximum) < 0 ? maximum : other.maximum;	    return between(min, max, getComparator());	}
-@Override	public boolean equals(final Object obj) {	    if (obj == this) {	        return true;	    } else if (obj == null || obj.getClass() != getClass()) {	        return false;	    } else {	        @SuppressWarnings("unchecked")	        final Range<T> range = (Range<T>) obj;	        return minimum.equals(range.minimum) && maximum.equals(range.maximum);	    }	}
-@Override	public int hashCode() {	    int result = hashCode;	    if (hashCode == 0) {	        result = 17;	        result = 37 * result + getClass().hashCode();	        result = 37 * result + minimum.hashCode();	        result = 37 * result + maximum.hashCode();	        hashCode = result;	    }	    return result;	}
-@Override	public String toString() {	    String result = toString;	    if (result == null) {	        final StringBuilder buf = new StringBuilder(32);	        buf.append('[');	        buf.append(minimum);	        buf.append("..");	        buf.append(maximum);	        buf.append(']');	        result = buf.toString();	        toString = result;	    }	    return result;	}
-public String toString(final String format) {	    return String.format(format, minimum, maximum, comparator);	}
-@Override	public int compare(final Object obj1, final Object obj2) {	    return ((Comparable) obj1).compareTo(obj2);	}
+public static <T extends Comparable<T>> Range<T> is(final T element) { [EOL]     return between(element, element, null); [EOL] }
+public static <T> Range<T> is(final T element, final Comparator<T> comparator) { [EOL]     return between(element, element, comparator); [EOL] }
+public static <T extends Comparable<T>> Range<T> between(final T fromInclusive, final T toInclusive) { [EOL]     return between(fromInclusive, toInclusive, null); [EOL] }
+public static <T> Range<T> between(final T fromInclusive, final T toInclusive, final Comparator<T> comparator) { [EOL]     return new Range<T>(fromInclusive, toInclusive, comparator); [EOL] }
+public T getMinimum() { [EOL]     return minimum; [EOL] }
+public T getMaximum() { [EOL]     return maximum; [EOL] }
+public Comparator<T> getComparator() { [EOL]     return comparator; [EOL] }
+public boolean isNaturalOrdering() { [EOL]     return comparator == ComparableComparator.INSTANCE; [EOL] }
+public boolean contains(final T element) { [EOL]     if (element == null) { [EOL]         return false; [EOL]     } [EOL]     return comparator.compare(element, minimum) > -1 && comparator.compare(element, maximum) < 1; [EOL] }
+public boolean isAfter(final T element) { [EOL]     if (element == null) { [EOL]         return false; [EOL]     } [EOL]     return comparator.compare(element, minimum) < 0; [EOL] }
+public boolean isStartedBy(final T element) { [EOL]     if (element == null) { [EOL]         return false; [EOL]     } [EOL]     return comparator.compare(element, minimum) == 0; [EOL] }
+public boolean isEndedBy(final T element) { [EOL]     if (element == null) { [EOL]         return false; [EOL]     } [EOL]     return comparator.compare(element, maximum) == 0; [EOL] }
+public boolean isBefore(final T element) { [EOL]     if (element == null) { [EOL]         return false; [EOL]     } [EOL]     return comparator.compare(element, maximum) > 0; [EOL] }
+public int elementCompareTo(final T element) { [EOL]     if (element == null) { [EOL]         throw new NullPointerException("Element is null"); [EOL]     } [EOL]     if (isAfter(element)) { [EOL]         return -1; [EOL]     } else if (isBefore(element)) { [EOL]         return 1; [EOL]     } else { [EOL]         return 0; [EOL]     } [EOL] }
+public boolean containsRange(final Range<T> otherRange) { [EOL]     if (otherRange == null) { [EOL]         return false; [EOL]     } [EOL]     return contains(otherRange.minimum) && contains(otherRange.maximum); [EOL] }
+public boolean isAfterRange(final Range<T> otherRange) { [EOL]     if (otherRange == null) { [EOL]         return false; [EOL]     } [EOL]     return isAfter(otherRange.maximum); [EOL] }
+public boolean isOverlappedBy(final Range<T> otherRange) { [EOL]     if (otherRange == null) { [EOL]         return false; [EOL]     } [EOL]     return otherRange.contains(minimum) || otherRange.contains(maximum) || contains(otherRange.minimum); [EOL] }
+public boolean isBeforeRange(final Range<T> otherRange) { [EOL]     if (otherRange == null) { [EOL]         return false; [EOL]     } [EOL]     return isBefore(otherRange.minimum); [EOL] }
+public Range<T> intersectionWith(final Range<T> other) { [EOL]     if (!this.isOverlappedBy(other)) { [EOL]         throw new IllegalArgumentException(String.format("Cannot calculate intersection with non-overlapping range %s", other)); [EOL]     } [EOL]     if (this.equals(other)) { [EOL]         return this; [EOL]     } [EOL]     final T min = getComparator().compare(minimum, other.minimum) < 0 ? other.minimum : minimum; [EOL]     final T max = getComparator().compare(maximum, other.maximum) < 0 ? maximum : other.maximum; [EOL]     return between(min, max, getComparator()); [EOL] }
+@Override [EOL] public boolean equals(final Object obj) { [EOL]     if (obj == this) { [EOL]         return true; [EOL]     } else if (obj == null || obj.getClass() != getClass()) { [EOL]         return false; [EOL]     } else { [EOL]         @SuppressWarnings("unchecked") [EOL]         final Range<T> range = (Range<T>) obj; [EOL]         return minimum.equals(range.minimum) && maximum.equals(range.maximum); [EOL]     } [EOL] }
+@Override [EOL] public int hashCode() { [EOL]     int result = hashCode; [EOL]     if (hashCode == 0) { [EOL]         result = 17; [EOL]         result = 37 * result + getClass().hashCode(); [EOL]         result = 37 * result + minimum.hashCode(); [EOL]         result = 37 * result + maximum.hashCode(); [EOL]         hashCode = result; [EOL]     } [EOL]     return result; [EOL] }
+@Override [EOL] public String toString() { [EOL]     String result = toString; [EOL]     if (result == null) { [EOL]         final StringBuilder buf = new StringBuilder(32); [EOL]         buf.append('['); [EOL]         buf.append(minimum); [EOL]         buf.append(".."); [EOL]         buf.append(maximum); [EOL]         buf.append(']'); [EOL]         result = buf.toString(); [EOL]         toString = result; [EOL]     } [EOL]     return result; [EOL] }
+public String toString(final String format) { [EOL]     return String.format(format, minimum, maximum, comparator); [EOL] }
+@Override [EOL] public int compare(final Object obj1, final Object obj2) { [EOL]     return ((Comparable) obj1).compareTo(obj2); [EOL] }

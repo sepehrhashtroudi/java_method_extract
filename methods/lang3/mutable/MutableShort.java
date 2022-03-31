@@ -1,19 +1,19 @@
-@Override	public Short getValue() {	    return Short.valueOf(this.value);	}
-public void setValue(final short value) {	    this.value = value;	}
-@Override	public void setValue(final Number value) {	    this.value = value.shortValue();	}
-public void increment() {	    value++;	}
-public void decrement() {	    value--;	}
-public void add(final short operand) {	    this.value += operand;	}
-public void add(final Number operand) {	    this.value += operand.shortValue();	}
-public void subtract(final short operand) {	    this.value -= operand;	}
-public void subtract(final Number operand) {	    this.value -= operand.shortValue();	}
-@Override	public short shortValue() {	    return value;	}
-@Override	public int intValue() {	    return value;	}
-@Override	public long longValue() {	    return value;	}
-@Override	public float floatValue() {	    return value;	}
-@Override	public double doubleValue() {	    return value;	}
-public Short toShort() {	    return Short.valueOf(shortValue());	}
-@Override	public boolean equals(final Object obj) {	    if (obj instanceof MutableShort) {	        return value == ((MutableShort) obj).shortValue();	    }	    return false;	}
-@Override	public int hashCode() {	    return value;	}
-@Override	public int compareTo(final MutableShort other) {	    final short anotherVal = other.value;	    return value < anotherVal ? -1 : (value == anotherVal ? 0 : 1);	}
-@Override	public String toString() {	    return String.valueOf(value);	}
+@Override [EOL] public Short getValue() { [EOL]     return Short.valueOf(this.value); [EOL] }
+public void setValue(final short value) { [EOL]     this.value = value; [EOL] }
+@Override [EOL] public void setValue(final Number value) { [EOL]     this.value = value.shortValue(); [EOL] }
+public void increment() { [EOL]     value++; [EOL] }
+public void decrement() { [EOL]     value--; [EOL] }
+public void add(final short operand) { [EOL]     this.value += operand; [EOL] }
+public void add(final Number operand) { [EOL]     this.value += operand.shortValue(); [EOL] }
+public void subtract(final short operand) { [EOL]     this.value -= operand; [EOL] }
+public void subtract(final Number operand) { [EOL]     this.value -= operand.shortValue(); [EOL] }
+@Override [EOL] public short shortValue() { [EOL]     return value; [EOL] }
+@Override [EOL] public int intValue() { [EOL]     return value; [EOL] }
+@Override [EOL] public long longValue() { [EOL]     return value; [EOL] }
+@Override [EOL] public float floatValue() { [EOL]     return value; [EOL] }
+@Override [EOL] public double doubleValue() { [EOL]     return value; [EOL] }
+public Short toShort() { [EOL]     return Short.valueOf(shortValue()); [EOL] }
+@Override [EOL] public boolean equals(final Object obj) { [EOL]     if (obj instanceof MutableShort) { [EOL]         return value == ((MutableShort) obj).shortValue(); [EOL]     } [EOL]     return false; [EOL] }
+@Override [EOL] public int hashCode() { [EOL]     return value; [EOL] }
+@Override [EOL] public int compareTo(final MutableShort other) { [EOL]     final short anotherVal = other.value; [EOL]     return value < anotherVal ? -1 : (value == anotherVal ? 0 : 1); [EOL] }
+@Override [EOL] public String toString() { [EOL]     return String.valueOf(value); [EOL] }

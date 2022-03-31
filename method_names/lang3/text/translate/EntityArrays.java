@@ -1,3 +1,4 @@
+EntityArrays
 public static String[][] ISO8859_1_ESCAPE()
 public static String[][] ISO8859_1_UNESCAPE()
 public static String[][] HTML40_EXTENDED_ESCAPE()

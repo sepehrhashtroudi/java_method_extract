@@ -1,3 +1,7 @@
+StrBuilderTokenizer
+StrBuilderReader
+StrBuilderWriter
+StrBuilder
 public String getNewLineText()
 public StrBuilder setNewLineText(final String newLine)
 public String getNullText()

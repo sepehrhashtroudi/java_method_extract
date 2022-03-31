@@ -1,5 +1,5 @@
-public final T getObject() {	    return object;	}
-@Override	public T get() throws ConcurrentException {	    return getObject();	}
-@Override	public int hashCode() {	    return getObject() != null ? getObject().hashCode() : 0;	}
-@Override	public boolean equals(final Object obj) {	    if (this == obj) {	        return true;	    }	    if (!(obj instanceof ConstantInitializer<?>)) {	        return false;	    }	    final ConstantInitializer<?> c = (ConstantInitializer<?>) obj;	    return ObjectUtils.equals(getObject(), c.getObject());	}
-@Override	public String toString() {	    return String.format(FMT_TO_STRING, Integer.valueOf(System.identityHashCode(this)), String.valueOf(getObject()));	}
+public final T getObject() { [EOL]     return object; [EOL] }
+@Override [EOL] public T get() throws ConcurrentException { [EOL]     return getObject(); [EOL] }
+@Override [EOL] public int hashCode() { [EOL]     return getObject() != null ? getObject().hashCode() : 0; [EOL] }
+@Override [EOL] public boolean equals(final Object obj) { [EOL]     if (this == obj) { [EOL]         return true; [EOL]     } [EOL]     if (!(obj instanceof ConstantInitializer<?>)) { [EOL]         return false; [EOL]     } [EOL]     final ConstantInitializer<?> c = (ConstantInitializer<?>) obj; [EOL]     return ObjectUtils.equals(getObject(), c.getObject()); [EOL] }
+@Override [EOL] public String toString() { [EOL]     return String.format(FMT_TO_STRING, Integer.valueOf(System.identityHashCode(this)), String.valueOf(getObject())); [EOL] }

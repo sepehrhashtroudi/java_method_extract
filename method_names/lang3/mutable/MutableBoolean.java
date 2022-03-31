@@ -1,3 +1,4 @@
+MutableBoolean
 public Boolean getValue()
 public void setValue(final boolean value)
 public void setValue(final Boolean value)

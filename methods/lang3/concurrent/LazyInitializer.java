@@ -1,2 +1,2 @@
-@Override	public T get() throws ConcurrentException {	    T result = object;	    if (result == null) {	        synchronized (this) {	            result = object;	            if (result == null) {	                object = result = initialize();	            }	        }	    }	    return result;	}
+@Override [EOL] public T get() throws ConcurrentException { [EOL]     T result = object; [EOL]     if (result == null) { [EOL]         synchronized (this) { [EOL]             result = object; [EOL]             if (result == null) { [EOL]                 object = result = initialize(); [EOL]             } [EOL]         } [EOL]     } [EOL]     return result; [EOL] }
 protected abstract T initialize() throws ConcurrentException;

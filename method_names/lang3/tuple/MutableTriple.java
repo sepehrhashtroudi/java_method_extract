@@ -1,3 +1,4 @@
+MutableTriple
 public static MutableTriple<L, M, R> of(final L left, final M middle, final R right)
 public L getLeft()
 public void setLeft(final L left)

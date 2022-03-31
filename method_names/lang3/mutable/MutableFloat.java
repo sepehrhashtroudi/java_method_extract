@@ -1,3 +1,4 @@
+MutableFloat
 public Float getValue()
 public void setValue(final float value)
 public void setValue(final Number value)

@@ -1,12 +1,12 @@
-public final synchronized ExecutorService getExternalExecutor() {	    return externalExecutor;	}
-public synchronized boolean isStarted() {	    return future != null;	}
-public final synchronized void setExternalExecutor(final ExecutorService externalExecutor) {	    if (isStarted()) {	        throw new IllegalStateException("Cannot set ExecutorService after start()!");	    }	    this.externalExecutor = externalExecutor;	}
-public synchronized boolean start() {	    if (!isStarted()) {	        ExecutorService tempExec;	        executor = getExternalExecutor();	        if (executor == null) {	            executor = tempExec = createExecutor();	        } else {	            tempExec = null;	        }	        future = executor.submit(createTask(tempExec));	        return true;	    }	    return false;	}
-@Override	public T get() throws ConcurrentException {	    try {	        return getFuture().get();	    } catch (final ExecutionException execex) {	        ConcurrentUtils.handleCause(execex);	        return null;	    } catch (final InterruptedException iex) {	        Thread.currentThread().interrupt();	        throw new ConcurrentException(iex);	    }	}
-public synchronized Future<T> getFuture() {	    if (future == null) {	        throw new IllegalStateException("start() must be called first!");	    }	    return future;	}
-protected synchronized final ExecutorService getActiveExecutor() {	    return executor;	}
-protected int getTaskCount() {	    return 1;	}
+public final synchronized ExecutorService getExternalExecutor() { [EOL]     return externalExecutor; [EOL] }
+public synchronized boolean isStarted() { [EOL]     return future != null; [EOL] }
+public final synchronized void setExternalExecutor(final ExecutorService externalExecutor) { [EOL]     if (isStarted()) { [EOL]         throw new IllegalStateException("Cannot set ExecutorService after start()!"); [EOL]     } [EOL]     this.externalExecutor = externalExecutor; [EOL] }
+public synchronized boolean start() { [EOL]     if (!isStarted()) { [EOL]         ExecutorService tempExec; [EOL]         executor = getExternalExecutor(); [EOL]         if (executor == null) { [EOL]             executor = tempExec = createExecutor(); [EOL]         } else { [EOL]             tempExec = null; [EOL]         } [EOL]         future = executor.submit(createTask(tempExec)); [EOL]         return true; [EOL]     } [EOL]     return false; [EOL] }
+@Override [EOL] public T get() throws ConcurrentException { [EOL]     try { [EOL]         return getFuture().get(); [EOL]     } catch (final ExecutionException execex) { [EOL]         ConcurrentUtils.handleCause(execex); [EOL]         return null; [EOL]     } catch (final InterruptedException iex) { [EOL]         Thread.currentThread().interrupt(); [EOL]         throw new ConcurrentException(iex); [EOL]     } [EOL] }
+public synchronized Future<T> getFuture() { [EOL]     if (future == null) { [EOL]         throw new IllegalStateException("start() must be called first!"); [EOL]     } [EOL]     return future; [EOL] }
+protected synchronized final ExecutorService getActiveExecutor() { [EOL]     return executor; [EOL] }
+protected int getTaskCount() { [EOL]     return 1; [EOL] }
 protected abstract T initialize() throws Exception;
-private Callable<T> createTask(final ExecutorService execDestroy) {	    return new InitializationTask(execDestroy);	}
-private ExecutorService createExecutor() {	    return Executors.newFixedThreadPool(getTaskCount());	}
-@Override	public T call() throws Exception {	    try {	        return initialize();	    } finally {	        if (execFinally != null) {	            execFinally.shutdown();	        }	    }	}
+private Callable<T> createTask(final ExecutorService execDestroy) { [EOL]     return new InitializationTask(execDestroy); [EOL] }
+private ExecutorService createExecutor() { [EOL]     return Executors.newFixedThreadPool(getTaskCount()); [EOL] }
+@Override [EOL] public T call() throws Exception { [EOL]     try { [EOL]         return initialize(); [EOL]     } finally { [EOL]         if (execFinally != null) { [EOL]             execFinally.shutdown(); [EOL]         } [EOL]     } [EOL] }

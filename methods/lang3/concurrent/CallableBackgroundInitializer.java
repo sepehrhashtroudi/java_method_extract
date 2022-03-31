@@ -1,2 +1,2 @@
-@Override	protected T initialize() throws Exception {	    return callable.call();	}
-private void checkCallable(final Callable<T> call) {	    if (call == null) {	        throw new IllegalArgumentException("Callable must not be null!");	    }	}
+@Override [EOL] protected T initialize() throws Exception { [EOL]     return callable.call(); [EOL] }
+private void checkCallable(final Callable<T> call) { [EOL]     if (call == null) { [EOL]         throw new IllegalArgumentException("Callable must not be null!"); [EOL]     } [EOL] }

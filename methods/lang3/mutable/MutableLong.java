@@ -1,18 +1,18 @@
-@Override	public Long getValue() {	    return Long.valueOf(this.value);	}
-public void setValue(final long value) {	    this.value = value;	}
-@Override	public void setValue(final Number value) {	    this.value = value.longValue();	}
-public void increment() {	    value++;	}
-public void decrement() {	    value--;	}
-public void add(final long operand) {	    this.value += operand;	}
-public void add(final Number operand) {	    this.value += operand.longValue();	}
-public void subtract(final long operand) {	    this.value -= operand;	}
-public void subtract(final Number operand) {	    this.value -= operand.longValue();	}
-@Override	public int intValue() {	    return (int) value;	}
-@Override	public long longValue() {	    return value;	}
-@Override	public float floatValue() {	    return value;	}
-@Override	public double doubleValue() {	    return value;	}
-public Long toLong() {	    return Long.valueOf(longValue());	}
-@Override	public boolean equals(final Object obj) {	    if (obj instanceof MutableLong) {	        return value == ((MutableLong) obj).longValue();	    }	    return false;	}
-@Override	public int hashCode() {	    return (int) (value ^ (value >>> 32));	}
-@Override	public int compareTo(final MutableLong other) {	    final long anotherVal = other.value;	    return value < anotherVal ? -1 : (value == anotherVal ? 0 : 1);	}
-@Override	public String toString() {	    return String.valueOf(value);	}
+@Override [EOL] public Long getValue() { [EOL]     return Long.valueOf(this.value); [EOL] }
+public void setValue(final long value) { [EOL]     this.value = value; [EOL] }
+@Override [EOL] public void setValue(final Number value) { [EOL]     this.value = value.longValue(); [EOL] }
+public void increment() { [EOL]     value++; [EOL] }
+public void decrement() { [EOL]     value--; [EOL] }
+public void add(final long operand) { [EOL]     this.value += operand; [EOL] }
+public void add(final Number operand) { [EOL]     this.value += operand.longValue(); [EOL] }
+public void subtract(final long operand) { [EOL]     this.value -= operand; [EOL] }
+public void subtract(final Number operand) { [EOL]     this.value -= operand.longValue(); [EOL] }
+@Override [EOL] public int intValue() { [EOL]     return (int) value; [EOL] }
+@Override [EOL] public long longValue() { [EOL]     return value; [EOL] }
+@Override [EOL] public float floatValue() { [EOL]     return value; [EOL] }
+@Override [EOL] public double doubleValue() { [EOL]     return value; [EOL] }
+public Long toLong() { [EOL]     return Long.valueOf(longValue()); [EOL] }
+@Override [EOL] public boolean equals(final Object obj) { [EOL]     if (obj instanceof MutableLong) { [EOL]         return value == ((MutableLong) obj).longValue(); [EOL]     } [EOL]     return false; [EOL] }
+@Override [EOL] public int hashCode() { [EOL]     return (int) (value ^ (value >>> 32)); [EOL] }
+@Override [EOL] public int compareTo(final MutableLong other) { [EOL]     final long anotherVal = other.value; [EOL]     return value < anotherVal ? -1 : (value == anotherVal ? 0 : 1); [EOL] }
+@Override [EOL] public String toString() { [EOL]     return String.valueOf(value); [EOL] }

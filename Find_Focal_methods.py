@@ -2,10 +2,12 @@ import re
 import os
 import sys
 from sklearn.model_selection import train_test_split
+import copy
 
 test_path= "Evo_tests/"
 method_names_path = "method_names/"
 source_file_path = "methods/"
+context_path = "context/"
 
 if os.path.exists("Evosuit.Methods"):
   os.remove("Evosuit.Methods")
@@ -23,46 +25,69 @@ if __name__ == "__main__":
                 # print(root+'/'+file)
                 if os.path.exists(root+"/"+file) \
                     and os.path.exists(test_path + "/".join(root.split('/')[1:])+'/'+file.split('.')[0]+"_ESTest.java") \
-                    and os.path.exists(method_names_path + "/".join(root.split('/')[1:])+"/"+file):
+                    and os.path.exists(method_names_path + "/".join(root.split('/')[1:])+"/"+file)\
+                    and os.path.exists(context_path + "/".join(root.split('/')[1:])+"/"+file):
+
 
                     f = open(root+"/"+file)
-                    methods = f.read()
+                    methods_body = f.read()
                     f.close()
                     # print(test_path + "/".join(root.split('/')[1:])+'/'+file.split('.')[0]+"_ESTest.java")
                     f = open(test_path + "/".join(root.split('/')[1:])+'/'+file.split('.')[0]+"_ESTest.java")
                     tests = f.read()
                     f.close()
                     # print(method_names_path + "/".join(root.split('/')[1:])+"/"+file)
-                    f = open(method_names_path + "/".join(root.split('/')[1:])+"/"+file)
+                    f = open(context_path + "/".join(root.split('/')[1:])+"/"+file)
                     m_names = f.read()
                     f.close()
 
-                    methods = methods.split('\n')
+                    f = open(method_names_path + "/".join(root.split('/')[1:])+"/"+file)
+                    context = f.read()
+                    f.close()
+                    context = context.split('\n')
+
+                    methods_body = methods_body.split('\n')
                     tests = tests.split('@Test')[1:]
                     method_name_list = []
                     method_name_list = [i.replace('(','') for i in re.findall('\w+\(',m_names)]
                     # print(method_name_list)
 
 
-                    methods = dict(zip(method_name_list, methods))
+                    methods_dict = dict(zip(method_name_list, methods_body))
 
                     # print(len(methods))
+                    
                     method_test = {}
                     for test in tests:
                         # print(test)
-                        for key,value in methods.items():
+                        for key,value in methods_dict.items():
                             if test.find(key)!=-1:
+                                context_copy = copy.deepcopy(context)
+                                for i,m in enumerate(context_copy):  #find the method name in the context and replace it with method body at the begining of the list
+                                    if key+'(' in m:
+                                        context_copy.pop(i)
+                                        context_copy.insert(1,value)
+
                                 test_s = test.split(';')
                                 new_test = []
-                                for i in test_s:
-                                    if i.find('assert') == -1 or i.find(key) != -1:
+                                if(test.count('assert')==1):
+                                    for i in test_s:
                                         new_test.append(i)
+                                elif(test.count('assert')>1):
+                                    # print("########################")
+                                    for i in test_s:
+                                        if i.find('assert') != -1 and i.find(key) == -1:
+                                            pass
+                                        else:
+                                            new_test.append(i)
                                 new_test = ';'.join(new_test)
                                 # print(new_test)
                                 
-                                test_name = re.findall('test\d+',new_test)[0]
-                                method_test['@Test' + new_test.replace(test_name,"test"+key)] = value
-                                
+                                if(len(new_test)>0):
+                                    test_name = re.findall('test\d+',new_test)[0]
+                                    if(new_test.find('assert')!=-1):
+                                        method_test['@Test' + new_test.replace(test_name,"test"+key)] = "\n".join(context_copy)
+                                    
 
                         
                     # for key , value in method_test.items():
@@ -71,15 +96,16 @@ if __name__ == "__main__":
                         
 
                     with open("Evosuit.tests", "a") as f1, open("Evosuit.Methods", "a") as f2:
-                        # f1.write(root+"/"+file+'\n')
-                        # f2.write(root+"/"+file+'\n')
+                        f1.write(root+"/"+file+'\n')
+                        f2.write(root+"/"+file+'\n')
                         for key , value in method_test.items():
-                            X.append(value +'\n')
-                            Y.append(key.replace('\n','\t') + '\n')
-                            f1.write(key.replace('\n','\t') + '\n')
-                            f2.write(value +'\n')
+                            X.append(value.replace('\n',' [EOL] ') +'\n')
+                            Y.append(key.replace('\n',' [EOL] ') + '\n')
+                            f1.write(key.replace('\n',' [EOL] ') + '\n')
+                            f2.write(value.replace('\n',' [EOL] ') +'\n')
                 
             except:
+                print("new_test")
                 print(new_test)
                 print(sys.exc_info())
 

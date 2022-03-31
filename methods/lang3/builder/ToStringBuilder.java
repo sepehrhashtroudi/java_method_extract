@@ -1,60 +1,60 @@
-public static ToStringStyle getDefaultStyle() {	    return defaultStyle;	}
-public static void setDefaultStyle(final ToStringStyle style) {	    if (style == null) {	        throw new IllegalArgumentException("The style must not be null");	    }	    defaultStyle = style;	}
-public static String reflectionToString(final Object object) {	    return ReflectionToStringBuilder.toString(object);	}
-public static String reflectionToString(final Object object, final ToStringStyle style) {	    return ReflectionToStringBuilder.toString(object, style);	}
-public static String reflectionToString(final Object object, final ToStringStyle style, final boolean outputTransients) {	    return ReflectionToStringBuilder.toString(object, style, outputTransients, false, null);	}
-public static <T> String reflectionToString(final T object, final ToStringStyle style, final boolean outputTransients, final Class<? super T> reflectUpToClass) {	    return ReflectionToStringBuilder.toString(object, style, outputTransients, false, reflectUpToClass);	}
-public ToStringBuilder append(final boolean value) {	    style.append(buffer, null, value);	    return this;	}
-public ToStringBuilder append(final boolean[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final byte value) {	    style.append(buffer, null, value);	    return this;	}
-public ToStringBuilder append(final byte[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final char value) {	    style.append(buffer, null, value);	    return this;	}
-public ToStringBuilder append(final char[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final double value) {	    style.append(buffer, null, value);	    return this;	}
-public ToStringBuilder append(final double[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final float value) {	    style.append(buffer, null, value);	    return this;	}
-public ToStringBuilder append(final float[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final int value) {	    style.append(buffer, null, value);	    return this;	}
-public ToStringBuilder append(final int[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final long value) {	    style.append(buffer, null, value);	    return this;	}
-public ToStringBuilder append(final long[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final Object obj) {	    style.append(buffer, null, obj, null);	    return this;	}
-public ToStringBuilder append(final Object[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final short value) {	    style.append(buffer, null, value);	    return this;	}
-public ToStringBuilder append(final short[] array) {	    style.append(buffer, null, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final boolean value) {	    style.append(buffer, fieldName, value);	    return this;	}
-public ToStringBuilder append(final String fieldName, final boolean[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final boolean[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final byte value) {	    style.append(buffer, fieldName, value);	    return this;	}
-public ToStringBuilder append(final String fieldName, final byte[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final byte[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final char value) {	    style.append(buffer, fieldName, value);	    return this;	}
-public ToStringBuilder append(final String fieldName, final char[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final char[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final double value) {	    style.append(buffer, fieldName, value);	    return this;	}
-public ToStringBuilder append(final String fieldName, final double[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final double[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final float value) {	    style.append(buffer, fieldName, value);	    return this;	}
-public ToStringBuilder append(final String fieldName, final float[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final float[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final int value) {	    style.append(buffer, fieldName, value);	    return this;	}
-public ToStringBuilder append(final String fieldName, final int[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final int[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final long value) {	    style.append(buffer, fieldName, value);	    return this;	}
-public ToStringBuilder append(final String fieldName, final long[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final long[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final Object obj) {	    style.append(buffer, fieldName, obj, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final Object obj, final boolean fullDetail) {	    style.append(buffer, fieldName, obj, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final Object[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final Object[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder append(final String fieldName, final short value) {	    style.append(buffer, fieldName, value);	    return this;	}
-public ToStringBuilder append(final String fieldName, final short[] array) {	    style.append(buffer, fieldName, array, null);	    return this;	}
-public ToStringBuilder append(final String fieldName, final short[] array, final boolean fullDetail) {	    style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail));	    return this;	}
-public ToStringBuilder appendAsObjectToString(final Object object) {	    ObjectUtils.identityToString(this.getStringBuffer(), object);	    return this;	}
-public ToStringBuilder appendSuper(final String superToString) {	    if (superToString != null) {	        style.appendSuper(buffer, superToString);	    }	    return this;	}
-public ToStringBuilder appendToString(final String toString) {	    if (toString != null) {	        style.appendToString(buffer, toString);	    }	    return this;	}
-public Object getObject() {	    return object;	}
-public StringBuffer getStringBuffer() {	    return buffer;	}
-public ToStringStyle getStyle() {	    return style;	}
-@Override	public String toString() {	    if (this.getObject() == null) {	        this.getStringBuffer().append(this.getStyle().getNullText());	    } else {	        style.appendEnd(this.getStringBuffer(), this.getObject());	    }	    return this.getStringBuffer().toString();	}
-@Override	public String build() {	    return toString();	}
+public static ToStringStyle getDefaultStyle() { [EOL]     return defaultStyle; [EOL] }
+public static void setDefaultStyle(final ToStringStyle style) { [EOL]     if (style == null) { [EOL]         throw new IllegalArgumentException("The style must not be null"); [EOL]     } [EOL]     defaultStyle = style; [EOL] }
+public static String reflectionToString(final Object object) { [EOL]     return ReflectionToStringBuilder.toString(object); [EOL] }
+public static String reflectionToString(final Object object, final ToStringStyle style) { [EOL]     return ReflectionToStringBuilder.toString(object, style); [EOL] }
+public static String reflectionToString(final Object object, final ToStringStyle style, final boolean outputTransients) { [EOL]     return ReflectionToStringBuilder.toString(object, style, outputTransients, false, null); [EOL] }
+public static <T> String reflectionToString(final T object, final ToStringStyle style, final boolean outputTransients, final Class<? super T> reflectUpToClass) { [EOL]     return ReflectionToStringBuilder.toString(object, style, outputTransients, false, reflectUpToClass); [EOL] }
+public ToStringBuilder append(final boolean value) { [EOL]     style.append(buffer, null, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final boolean[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final byte value) { [EOL]     style.append(buffer, null, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final byte[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final char value) { [EOL]     style.append(buffer, null, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final char[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final double value) { [EOL]     style.append(buffer, null, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final double[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final float value) { [EOL]     style.append(buffer, null, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final float[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final int value) { [EOL]     style.append(buffer, null, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final int[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final long value) { [EOL]     style.append(buffer, null, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final long[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final Object obj) { [EOL]     style.append(buffer, null, obj, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final Object[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final short value) { [EOL]     style.append(buffer, null, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final short[] array) { [EOL]     style.append(buffer, null, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final boolean value) { [EOL]     style.append(buffer, fieldName, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final boolean[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final boolean[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final byte value) { [EOL]     style.append(buffer, fieldName, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final byte[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final byte[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final char value) { [EOL]     style.append(buffer, fieldName, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final char[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final char[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final double value) { [EOL]     style.append(buffer, fieldName, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final double[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final double[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final float value) { [EOL]     style.append(buffer, fieldName, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final float[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final float[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final int value) { [EOL]     style.append(buffer, fieldName, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final int[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final int[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final long value) { [EOL]     style.append(buffer, fieldName, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final long[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final long[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final Object obj) { [EOL]     style.append(buffer, fieldName, obj, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final Object obj, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, obj, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final Object[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final Object[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final short value) { [EOL]     style.append(buffer, fieldName, value); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final short[] array) { [EOL]     style.append(buffer, fieldName, array, null); [EOL]     return this; [EOL] }
+public ToStringBuilder append(final String fieldName, final short[] array, final boolean fullDetail) { [EOL]     style.append(buffer, fieldName, array, Boolean.valueOf(fullDetail)); [EOL]     return this; [EOL] }
+public ToStringBuilder appendAsObjectToString(final Object object) { [EOL]     ObjectUtils.identityToString(this.getStringBuffer(), object); [EOL]     return this; [EOL] }
+public ToStringBuilder appendSuper(final String superToString) { [EOL]     if (superToString != null) { [EOL]         style.appendSuper(buffer, superToString); [EOL]     } [EOL]     return this; [EOL] }
+public ToStringBuilder appendToString(final String toString) { [EOL]     if (toString != null) { [EOL]         style.appendToString(buffer, toString); [EOL]     } [EOL]     return this; [EOL] }
+public Object getObject() { [EOL]     return object; [EOL] }
+public StringBuffer getStringBuffer() { [EOL]     return buffer; [EOL] }
+public ToStringStyle getStyle() { [EOL]     return style; [EOL] }
+@Override [EOL] public String toString() { [EOL]     if (this.getObject() == null) { [EOL]         this.getStringBuffer().append(this.getStyle().getNullText()); [EOL]     } else { [EOL]         style.appendEnd(this.getStringBuffer(), this.getObject()); [EOL]     } [EOL]     return this.getStringBuffer().toString(); [EOL] }
+@Override [EOL] public String build() { [EOL]     return toString(); [EOL] }

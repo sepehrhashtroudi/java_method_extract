@@ -1,3 +1,4 @@
+MutableLong
 public Long getValue()
 public void setValue(final long value)
 public void setValue(final Number value)

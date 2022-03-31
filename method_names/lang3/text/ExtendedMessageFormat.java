@@ -1,3 +1,4 @@
+ExtendedMessageFormat
 public String toPattern()
 public final void applyPattern(final String pattern)
 public void setFormat(final int formatElementIndex, final Format newFormat)

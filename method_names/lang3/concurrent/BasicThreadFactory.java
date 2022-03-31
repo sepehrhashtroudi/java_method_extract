@@ -1,3 +1,5 @@
+Builder
+BasicThreadFactory
 public final ThreadFactory getWrappedFactory()
 public final String getNamingPattern()
 public final Boolean getDaemonFlag()

@@ -1,20 +1,20 @@
-@Override	public Float getValue() {	    return Float.valueOf(this.value);	}
-public void setValue(final float value) {	    this.value = value;	}
-@Override	public void setValue(final Number value) {	    this.value = value.floatValue();	}
-public boolean isNaN() {	    return Float.isNaN(value);	}
-public boolean isInfinite() {	    return Float.isInfinite(value);	}
-public void increment() {	    value++;	}
-public void decrement() {	    value--;	}
-public void add(final float operand) {	    this.value += operand;	}
-public void add(final Number operand) {	    this.value += operand.floatValue();	}
-public void subtract(final float operand) {	    this.value -= operand;	}
-public void subtract(final Number operand) {	    this.value -= operand.floatValue();	}
-@Override	public int intValue() {	    return (int) value;	}
-@Override	public long longValue() {	    return (long) value;	}
-@Override	public float floatValue() {	    return value;	}
-@Override	public double doubleValue() {	    return value;	}
-public Float toFloat() {	    return Float.valueOf(floatValue());	}
-@Override	public boolean equals(final Object obj) {	    return obj instanceof MutableFloat && Float.floatToIntBits(((MutableFloat) obj).value) == Float.floatToIntBits(value);	}
-@Override	public int hashCode() {	    return Float.floatToIntBits(value);	}
-@Override	public int compareTo(final MutableFloat other) {	    final float anotherVal = other.value;	    return Float.compare(value, anotherVal);	}
-@Override	public String toString() {	    return String.valueOf(value);	}
+@Override [EOL] public Float getValue() { [EOL]     return Float.valueOf(this.value); [EOL] }
+public void setValue(final float value) { [EOL]     this.value = value; [EOL] }
+@Override [EOL] public void setValue(final Number value) { [EOL]     this.value = value.floatValue(); [EOL] }
+public boolean isNaN() { [EOL]     return Float.isNaN(value); [EOL] }
+public boolean isInfinite() { [EOL]     return Float.isInfinite(value); [EOL] }
+public void increment() { [EOL]     value++; [EOL] }
+public void decrement() { [EOL]     value--; [EOL] }
+public void add(final float operand) { [EOL]     this.value += operand; [EOL] }
+public void add(final Number operand) { [EOL]     this.value += operand.floatValue(); [EOL] }
+public void subtract(final float operand) { [EOL]     this.value -= operand; [EOL] }
+public void subtract(final Number operand) { [EOL]     this.value -= operand.floatValue(); [EOL] }
+@Override [EOL] public int intValue() { [EOL]     return (int) value; [EOL] }
+@Override [EOL] public long longValue() { [EOL]     return (long) value; [EOL] }
+@Override [EOL] public float floatValue() { [EOL]     return value; [EOL] }
+@Override [EOL] public double doubleValue() { [EOL]     return value; [EOL] }
+public Float toFloat() { [EOL]     return Float.valueOf(floatValue()); [EOL] }
+@Override [EOL] public boolean equals(final Object obj) { [EOL]     return obj instanceof MutableFloat && Float.floatToIntBits(((MutableFloat) obj).value) == Float.floatToIntBits(value); [EOL] }
+@Override [EOL] public int hashCode() { [EOL]     return Float.floatToIntBits(value); [EOL] }
+@Override [EOL] public int compareTo(final MutableFloat other) { [EOL]     final float anotherVal = other.value; [EOL]     return Float.compare(value, anotherVal); [EOL] }
+@Override [EOL] public String toString() { [EOL]     return String.valueOf(value); [EOL] }

@@ -1,20 +1,20 @@
-@Override	public Double getValue() {	    return Double.valueOf(this.value);	}
-public void setValue(final double value) {	    this.value = value;	}
-@Override	public void setValue(final Number value) {	    this.value = value.doubleValue();	}
-public boolean isNaN() {	    return Double.isNaN(value);	}
-public boolean isInfinite() {	    return Double.isInfinite(value);	}
-public void increment() {	    value++;	}
-public void decrement() {	    value--;	}
-public void add(final double operand) {	    this.value += operand;	}
-public void add(final Number operand) {	    this.value += operand.doubleValue();	}
-public void subtract(final double operand) {	    this.value -= operand;	}
-public void subtract(final Number operand) {	    this.value -= operand.doubleValue();	}
-@Override	public int intValue() {	    return (int) value;	}
-@Override	public long longValue() {	    return (long) value;	}
-@Override	public float floatValue() {	    return (float) value;	}
-@Override	public double doubleValue() {	    return value;	}
-public Double toDouble() {	    return Double.valueOf(doubleValue());	}
-@Override	public boolean equals(final Object obj) {	    return obj instanceof MutableDouble && Double.doubleToLongBits(((MutableDouble) obj).value) == Double.doubleToLongBits(value);	}
-@Override	public int hashCode() {	    final long bits = Double.doubleToLongBits(value);	    return (int) (bits ^ bits >>> 32);	}
-@Override	public int compareTo(final MutableDouble other) {	    final double anotherVal = other.value;	    return Double.compare(value, anotherVal);	}
-@Override	public String toString() {	    return String.valueOf(value);	}
+@Override [EOL] public Double getValue() { [EOL]     return Double.valueOf(this.value); [EOL] }
+public void setValue(final double value) { [EOL]     this.value = value; [EOL] }
+@Override [EOL] public void setValue(final Number value) { [EOL]     this.value = value.doubleValue(); [EOL] }
+public boolean isNaN() { [EOL]     return Double.isNaN(value); [EOL] }
+public boolean isInfinite() { [EOL]     return Double.isInfinite(value); [EOL] }
+public void increment() { [EOL]     value++; [EOL] }
+public void decrement() { [EOL]     value--; [EOL] }
+public void add(final double operand) { [EOL]     this.value += operand; [EOL] }
+public void add(final Number operand) { [EOL]     this.value += operand.doubleValue(); [EOL] }
+public void subtract(final double operand) { [EOL]     this.value -= operand; [EOL] }
+public void subtract(final Number operand) { [EOL]     this.value -= operand.doubleValue(); [EOL] }
+@Override [EOL] public int intValue() { [EOL]     return (int) value; [EOL] }
+@Override [EOL] public long longValue() { [EOL]     return (long) value; [EOL] }
+@Override [EOL] public float floatValue() { [EOL]     return (float) value; [EOL] }
+@Override [EOL] public double doubleValue() { [EOL]     return value; [EOL] }
+public Double toDouble() { [EOL]     return Double.valueOf(doubleValue()); [EOL] }
+@Override [EOL] public boolean equals(final Object obj) { [EOL]     return obj instanceof MutableDouble && Double.doubleToLongBits(((MutableDouble) obj).value) == Double.doubleToLongBits(value); [EOL] }
+@Override [EOL] public int hashCode() { [EOL]     final long bits = Double.doubleToLongBits(value); [EOL]     return (int) (bits ^ bits >>> 32); [EOL] }
+@Override [EOL] public int compareTo(final MutableDouble other) { [EOL]     final double anotherVal = other.value; [EOL]     return Double.compare(value, anotherVal); [EOL] }
+@Override [EOL] public String toString() { [EOL]     return String.valueOf(value); [EOL] }

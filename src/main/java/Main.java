@@ -1,6 +1,8 @@
+import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.*;
 import com.github.javaparser.*;
 import java.io.FileInputStream;
+import java.lang.instrument.ClassDefinition;
 import java.util.Scanner;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.printer.configuration.DefaultConfigurationOption;
@@ -40,6 +42,19 @@ public class Main {
         PrintWriter out = new PrintWriter(bw);
 
 
+        directoryName = PATH.concat("context/"+new_path);
+        directory = new File(directoryName);
+        if (! directory.exists()){
+            directory.mkdirs();
+            System.out.println(directoryName+ "  made");
+            // If you require it to make the entire directory path including parents,
+            // use directory.mkdirs(); here instead.
+        }
+        FileWriter context_fw = new FileWriter("./context/" + pathname , false);
+        BufferedWriter context_bw = new BufferedWriter(context_fw);
+        PrintWriter context_out = new PrintWriter(context_bw);
+
+
         directoryName = PATH.concat("method_names/"+new_path);
         directory = new File(directoryName);
         if (! directory.exists()){
@@ -48,24 +63,23 @@ public class Main {
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
         }
-
         FileWriter m_fw = new FileWriter("./method_names/" + pathname , false);
         BufferedWriter m_bw = new BufferedWriter(m_fw);
         PrintWriter m_out = new PrintWriter(m_bw);
 
-//        directoryName = PATH.concat("test_names/");
-//        directory = new File(directoryName);
-//        if (! directory.exists()){
-//            directory.mkdir();
-//            // If you require it to make the entire directory path including parents,
-//            // use directory.mkdirs(); here instead.
-//        }
-//        file=new File("./test_names/"+pathname);
-//        file.delete();
-//        FileWriter test_fw = new FileWriter("./test_names/" + pathname , true);
-//        BufferedWriter test_bw = new BufferedWriter(test_fw);
-//        PrintWriter test_out = new PrintWriter(test_bw);
-//        out.println(pathname);
+
+        new VoidVisitorAdapter<Object>() {
+            @Override
+            public void visit(ClassOrInterfaceDeclaration n, Object arg) {
+                super.visit(n, arg);
+//                System.out.println(" * " + n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t")+ "\n");
+//                System.out.println(" * " + n.getDeclarationAsString());
+//                m_out.println(n.getDeclarationAsString());
+                m_out.println(n.getNameAsString());
+                context_out.println(n.getNameAsString());
+//                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t"));
+            }
+        }.visit(StaticJavaParser.parse(filePath), null);
 
         new VoidVisitorAdapter<Object>() {
             @Override
@@ -74,13 +88,41 @@ public class Main {
 //                System.out.println(" * " + n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t")+ "\n");
 //                System.out.println(" * " + n.getDeclarationAsString());
                 m_out.println(n.getDeclarationAsString());
-//                Writer w = new FileWriter("output.txt");
-                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t"));
+                context_out.println(n.getDeclarationAsString());
+                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", " [EOL] "));
             }
         }.visit(StaticJavaParser.parse(filePath), null);
+
+        CompilationUnit cu = StaticJavaParser.parse(filePath);
+        for (TypeDeclaration<?> typeDec : cu.getTypes()) {
+            for (BodyDeclaration<?> member : typeDec.getMembers()) {
+                member.toFieldDeclaration().ifPresent(field -> {
+                    for (VariableDeclarator variable : field.getVariables()) {
+
+                        //Print the field's class typr
+                        context_out.print(variable.getType()+ " ");
+                        //Print the field's name
+
+                        //Print the field's init value, if not null
+                        if (variable.getInitializer().toString() != "Optional.empty"){
+                            context_out.print(variable.getName()+ "=");
+                            context_out.println(variable.getInitializer().toString());
+                        }
+                        else{
+                            context_out.print(variable.getName());
+                            context_out.println("");
+                        }
+
+//                        variable.getInitializer().ifPresent(initValue -> m_out.println(initValue.toString()));
+
+                    }
+                });
+            }
+        }
         System.out.println();
         out.close();
         m_out.close();
+        context_out.close();
 //        test_out.close();
     }
     public static List<String> findFiles(Path path, String fileExtension)
