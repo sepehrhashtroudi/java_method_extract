@@ -14,6 +14,11 @@ if os.path.exists("Evosuit.Methods"):
   os.remove("Evosuit.Methods")
 if os.path.exists("Evosuit.tests"):
   os.remove("Evosuit.tests")
+if os.path.exists("Evosuit_Assert.Methods"):
+  os.remove("Evosuit_Assert.Methods")
+if os.path.exists("Evosuit_Assert.tests"):
+  os.remove("Evosuit_Assert.tests")
+
 X = []
 Y = []
 if __name__ == "__main__":
