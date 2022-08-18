@@ -1,4 +1,3 @@
-StrTokenizer
 private static StrTokenizer getCSVClone()
 public static StrTokenizer getCSVInstance()
 public static StrTokenizer getCSVInstance(final String input)

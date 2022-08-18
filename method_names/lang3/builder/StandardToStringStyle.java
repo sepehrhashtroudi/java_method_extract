@@ -1,4 +1,3 @@
-StandardToStringStyle
 public boolean isUseClassName()
 public void setUseClassName(final boolean useClassName)
 public boolean isUseShortClassName()

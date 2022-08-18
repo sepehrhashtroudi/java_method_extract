@@ -1,6 +1,3 @@
-CsvEscaper
-CsvUnescaper
-StringEscapeUtils
 public int translate(final CharSequence input, final int index, final Writer out) throws IOException
 public int translate(final CharSequence input, final int index, final Writer out) throws IOException
 public static final String escapeJava(final String input)

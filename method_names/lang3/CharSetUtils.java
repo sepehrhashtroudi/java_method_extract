@@ -1,4 +1,3 @@
-CharSetUtils
 public static String squeeze(final String str, final String... set)
 public static boolean containsAny(final String str, final String... set)
 public static int count(final String str, final String... set)

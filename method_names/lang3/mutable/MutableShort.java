@@ -1,4 +1,3 @@
-MutableShort
 public Short getValue()
 public void setValue(final short value)
 public void setValue(final Number value)

@@ -20,6 +20,7 @@ import java.io.*;
 public class Main {
     static String path = "lang3/";
     static final PrinterConfiguration prettyPrinterNoCommentsConfiguration = new DefaultPrinterConfiguration().removeOption(new DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.PRINT_COMMENTS));
+//    static final PrinterConfiguration prettyPrinterNoCommentsConfiguration = new DefaultPrinterConfiguration();
 
     static public void listClasses(String filePath, String pathname) throws IOException {
         String PATH = "./";
@@ -75,7 +76,7 @@ public class Main {
 //                System.out.println(" * " + n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t")+ "\n");
 //                System.out.println(" * " + n.getDeclarationAsString());
 //                m_out.println(n.getDeclarationAsString());
-                m_out.println(n.getNameAsString());
+//                m_out.println(n.getNameAsString());
                 context_out.println(n.getNameAsString());
 //                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t"));
             }
@@ -89,7 +90,8 @@ public class Main {
 //                System.out.println(" * " + n.getDeclarationAsString());
                 m_out.println(n.getDeclarationAsString());
                 context_out.println(n.getDeclarationAsString());
-                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", " [EOL] "));
+                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", " [EOL] ") + " <line_num>: " + n.getName().getBegin().get().line);
+
             }
         }.visit(StaticJavaParser.parse(filePath), null);
 

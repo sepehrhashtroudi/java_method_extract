@@ -1,4 +1,3 @@
-HashCodeBuilder
  static Set<IDKey> getRegistry()
  static boolean isRegistered(final Object value)
 private static void reflectionAppend(final Object object, final Class<?> clazz, final HashCodeBuilder builder, final boolean useTransients, final String[] excludeFields)

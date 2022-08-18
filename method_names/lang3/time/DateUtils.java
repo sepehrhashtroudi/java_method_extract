@@ -1,5 +1,3 @@
-DateIterator
-DateUtils
 public static boolean isSameDay(final Date date1, final Date date2)
 public static boolean isSameDay(final Calendar cal1, final Calendar cal2)
 public static boolean isSameInstant(final Date date1, final Date date2)

@@ -1,4 +1,3 @@
-ToStringBuilder
 public static ToStringStyle getDefaultStyle()
 public static void setDefaultStyle(final ToStringStyle style)
 public static String reflectionToString(final Object object)

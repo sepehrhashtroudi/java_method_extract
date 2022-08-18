@@ -1,9 +1,3 @@
-Strategy
-CopyQuotedStrategy
-TextStrategy
-NumberStrategy
-TimeZoneStrategy
-FastDateParser
 private void init()
 public String getPattern()
 public TimeZone getTimeZone()

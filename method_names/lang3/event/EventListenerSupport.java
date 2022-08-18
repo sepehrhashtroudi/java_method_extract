@@ -1,5 +1,3 @@
-ProxyInvocationHandler
-EventListenerSupport
 public static EventListenerSupport<T> create(final Class<T> listenerInterface)
 public L fire()
 public void addListener(final L listener)

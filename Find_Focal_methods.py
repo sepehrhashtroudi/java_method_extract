@@ -48,6 +48,7 @@ if __name__ == "__main__":
 
                     methods_body = methods_body.split('\n')
                     tests = tests.split('@Test')[1:]
+                    tests[-1] = tests[-1][0:-2] #omiting last }
                     method_name_list = []
                     method_name_list = [i.replace('(','') for i in re.findall('\w+\(',m_names)]
                     # print(method_name_list)
@@ -58,6 +59,8 @@ if __name__ == "__main__":
                     # print(len(methods))
                     
                     method_test = {}
+                    all_methods = []
+                    all_tests = []
                     for test in tests:
                         # print(test)
                         for key,value in methods_dict.items():
@@ -68,7 +71,7 @@ if __name__ == "__main__":
                                         context_copy.pop(i)
                                         context_copy.insert(1,value)
 
-                                test_s = test.split(';')
+                                test_s = test.split('\n')
                                 new_test = []
                                 if(test.count('assert')==1):
                                     for i in test_s:
@@ -80,13 +83,16 @@ if __name__ == "__main__":
                                             pass
                                         else:
                                             new_test.append(i)
-                                new_test = ';'.join(new_test)
+                                new_test = '\n'.join(new_test)
                                 # print(new_test)
                                 
                                 if(len(new_test)>0):
                                     test_name = re.findall('test\d+',new_test)[0]
                                     if(new_test.find('assert')!=-1):
-                                        method_test['@Test' + new_test.replace(test_name,"test"+key)] = "\n".join(context_copy)
+                                        # method_test['@Test' + new_test.replace(test_name,"test"+key)] = "\n".join(context_copy)
+                                        all_methods.append("\n".join(context_copy))
+                                        all_tests.append('@Test' + new_test.replace(test_name,"test"+key))
+
                                     
 
                         
@@ -98,11 +104,12 @@ if __name__ == "__main__":
                     with open("Evosuit.tests", "a") as f1, open("Evosuit.Methods", "a") as f2:
                         f1.write(root+"/"+file+'\n')
                         f2.write(root+"/"+file+'\n')
-                        for key , value in method_test.items():
+                        for value  in all_methods:
                             X.append(value.replace('\n',' [EOL] ') +'\n')
+                            f2.write(value.replace('\n',' [EOL] ') +'\n')
+                        for key  in all_tests:
                             Y.append(key.replace('\n',' [EOL] ') + '\n')
                             f1.write(key.replace('\n',' [EOL] ') + '\n')
-                            f2.write(value.replace('\n',' [EOL] ') +'\n')
                 
             except:
                 print("new_test")

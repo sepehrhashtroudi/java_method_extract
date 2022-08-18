@@ -1,5 +1,3 @@
-SyncAvoid
-LocaleUtils
 public static Locale toLocale(final String str)
 public static List<Locale> localeLookupList(final Locale locale)
 public static List<Locale> localeLookupList(final Locale locale, final Locale defaultLocale)

@@ -1,4 +1,3 @@
-MutableDouble
 public Double getValue()
 public void setValue(final double value)
 public void setValue(final Number value)

@@ -1,5 +1,3 @@
-MultiBackgroundInitializerResults
-MultiBackgroundInitializer
 public void addInitializer(final String name, final BackgroundInitializer<?> init)
 protected int getTaskCount()
 protected MultiBackgroundInitializerResults initialize() throws Exception

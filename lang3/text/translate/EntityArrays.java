@@ -1,5 +1,36 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 package org.apache.commons.lang3.text.translate;
+
+
+
+
+
+
+
+
+
 public class EntityArrays {
+
+
+
+
+
+
     public static String[][] ISO8859_1_ESCAPE() { return ISO8859_1_ESCAPE.clone(); }
     private static final String[][] ISO8859_1_ESCAPE = {
         {"\u00A0", "&nbsp;"}, // non-breaking space

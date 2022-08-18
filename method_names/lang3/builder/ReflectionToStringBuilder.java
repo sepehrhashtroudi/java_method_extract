@@ -1,4 +1,3 @@
-ReflectionToStringBuilder
 public static String toString(final Object object)
 public static String toString(final Object object, final ToStringStyle style)
 public static String toString(final Object object, final ToStringStyle style, final boolean outputTransients)

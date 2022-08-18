@@ -1,4 +1,3 @@
-ContextedException
 public ContextedException addContextValue(final String label, final Object value)
 public ContextedException setContextValue(final String label, final Object value)
 public List<Object> getContextValues(final String label)

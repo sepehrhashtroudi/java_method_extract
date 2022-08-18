@@ -1,9 +1,3 @@
-DefaultToStringStyle
-NoFieldNameToStringStyle
-ShortPrefixToStringStyle
-SimpleToStringStyle
-MultiLineToStringStyle
-ToStringStyle
  static Map<Object, Object> getRegistry()
  static boolean isRegistered(final Object value)
  static void register(final Object value)

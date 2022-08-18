@@ -10,14 +10,20 @@ method_names_path = "method_names/"
 source_file_path = "methods/"
 context_path = "context/"
 
-if os.path.exists("Evosuit.Methods"):
-  os.remove("Evosuit.Methods")
+if os.path.exists("Evosuit.methods"):
+  os.remove("Evosuit.methods")
 if os.path.exists("Evosuit.tests"):
   os.remove("Evosuit.tests")
-if os.path.exists("Evosuit_Assert.Methods"):
-  os.remove("Evosuit_Assert.Methods")
+if os.path.exists("Evosuit_Assert.methods"):
+  os.remove("Evosuit_Assert.methods")
 if os.path.exists("Evosuit_Assert.tests"):
   os.remove("Evosuit_Assert.tests")
+  
+if os.path.exists("Just_methods.methods"):
+  os.remove("Just_methods.methods")
+
+if os.path.exists("Just_tests.tests"):
+  os.remove("Just_tests.tests")
 
 X = []
 Y = []
@@ -54,6 +60,7 @@ if __name__ == "__main__":
 
                     methods_body = methods_body.split('\n')
                     tests = tests.split('@Test')[1:]
+                    tests[-1] = tests[-1][0:-2]
                     method_name_list = []
                     method_name_list = [i.replace('(','') for i in re.findall('\w+\(',m_names)]
                     # print(method_name_list)
@@ -62,14 +69,16 @@ if __name__ == "__main__":
                     methods_dict = dict(zip(method_name_list, methods_body))
 
                     # print(len(methods))
-                    
-                    method_test = {}
+                    just_methods = []
+                    just_tests = []
+                    methods_with_context_and_test = []
+                    all_asserts = []
+                    counter = 0
                     for test in tests:
                         # print(test)
                         for key,value in methods_dict.items():
                             if test.find(key)!=-1:
-
-                                test_s = test.split(';')
+                                test_s = test.split('\n')
                                 new_test = []
                                 Asserts = []
                                 if(test.count('assert')==1):
@@ -89,10 +98,11 @@ if __name__ == "__main__":
                                             Asserts.append(m)
                                             new_test.pop(i)
                                             new_test.insert(i," [AST] ")
-                                    new_test = ';'.join(new_test)
+                                    new_test = '\n'.join(new_test)
                                     test_name = re.findall('test\d+',new_test)[0]
                                     new_test =  '@Test' + new_test.replace(test_name,"test"+key)
-                                    Asserts = " ".join(Asserts)
+                                    Asserts = "\n".join(Asserts)
+                                    
 
                                 context_copy = copy.deepcopy(context)
                                 for j,n in enumerate(context_copy):  #find the method name in the context and replace it with method body at the begining of the list
@@ -111,7 +121,12 @@ if __name__ == "__main__":
                                 if(len(context_copy)>0 and len(Asserts)>0 and len(new_test) > 0):
                                     # print(context_copy)
                                     # print(Asserts)
-                                    method_test[Asserts] = "\n".join(context_copy)
+                                    all_asserts.append(Asserts)
+                                    methods_with_context_and_test.append("\n".join(context_copy))
+                                    just_methods.append(value)
+                                    just_tests.append(new_test)
+                                    
+
                                     
 
                         
@@ -120,14 +135,21 @@ if __name__ == "__main__":
                     #     print('\n\n\n')
                         
 
-                    with open("Evosuit_Assert.tests", "a") as f1, open("Evosuit_Assert.Methods", "a") as f2:
+                    with open("Evosuit_Assert.tests", "a") as f1, open("Evosuit_Assert.methods", "a") as f2, open("Just_methods.methods", "a") as f3, open("Just_tests.tests", "a") as f4:
                         f1.write(root+"/"+file+'\n')
                         f2.write(root+"/"+file+'\n')
-                        for key , value in method_test.items():
+                        f3.write(root+"/"+file+'\n')
+                        f4.write(test_path + "/".join(root.split('/')[1:])+'/'+file.split('.')[0]+"_ESTest.java"+'\n')
+                        for value in  methods_with_context_and_test:
                             X.append(value.replace('\n',' [EOL] ') +'\n')
+                            f2.write(value.replace('\n',' [EOL] ') +'\n')
+                        for key in all_asserts:
                             Y.append(key.replace('\n',' [EOL] ') + '\n')
                             f1.write(key.replace('\n',' [EOL] ') + '\n')
-                            f2.write(value.replace('\n',' [EOL] ') +'\n')
+                        for i in just_methods:
+                            f3.write(i.replace('\n',' [EOL] ') + '\n')    
+                        for i in just_tests:
+                            f4.write(i.replace('\n',' [EOL] ') + '\n')    
                 
             # except:
             #     print("new_test")

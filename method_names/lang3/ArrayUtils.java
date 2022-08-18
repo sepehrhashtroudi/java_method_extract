@@ -1,4 +1,3 @@
-ArrayUtils
 public static String toString(final Object array)
 public static String toString(final Object array, final String stringIfNull)
 public static int hashCode(final Object array)

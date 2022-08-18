@@ -1,4 +1,3 @@
-Validate
 public static void isTrue(final boolean expression, final String message, final long value)
 public static void isTrue(final boolean expression, final String message, final double value)
 public static void isTrue(final boolean expression, final String message, final Object... values)

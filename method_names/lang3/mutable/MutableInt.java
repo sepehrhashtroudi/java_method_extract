@@ -1,4 +1,3 @@
-MutableInt
 public Integer getValue()
 public void setValue(final int value)
 public void setValue(final Number value)

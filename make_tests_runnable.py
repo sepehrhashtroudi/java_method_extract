@@ -5,7 +5,7 @@ import sys
 from sklearn.model_selection import train_test_split
 import copy
 root = './'
-file = "test_0_tufano.output"
+file = "test_0.output"
 
 if __name__ == "__main__":
     f = open(root+"/"+file)
@@ -24,9 +24,9 @@ if __name__ == "__main__":
         
     
     new_test_body = re.sub('test\w+\(\)', replace, tests_body)
-    new_test_body = re.sub('        ', '\n', new_test_body)
+    new_test_body = re.sub("\[EOL\]", '\n', new_test_body)
     # print(new_test_body)
-    with open("Final_tests_tufano.java", "w") as Final_tests:
+    with open("Final_tests_new1234589.java", "w") as Final_tests:
         Final_tests.write(new_test_body)
         
 
