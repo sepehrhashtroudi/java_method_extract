@@ -28,7 +28,7 @@ public class Main {
         for(int i=0; i < pathname.split("/").length - 1; i++){
             new_path += pathname.split("/")[i]+"/";
         }
-        String directoryName = PATH.concat("methods/"+new_path);
+        String directoryName = PATH.concat("output/methods/"+new_path);
         File directory = new File(directoryName);
         System.out.println(directoryName);
         if (! directory.exists()){
@@ -38,12 +38,12 @@ public class Main {
             // use directory.mkdirs(); here instead.
         }
 
-        FileWriter fw = new FileWriter("./methods/" + pathname , false);
+        FileWriter fw = new FileWriter("./output/methods/" + pathname , false);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter out = new PrintWriter(bw);
 
 
-        directoryName = PATH.concat("context/"+new_path);
+        directoryName = PATH.concat("output/context/"+new_path);
         directory = new File(directoryName);
         if (! directory.exists()){
             directory.mkdirs();
@@ -51,12 +51,12 @@ public class Main {
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
         }
-        FileWriter context_fw = new FileWriter("./context/" + pathname , false);
+        FileWriter context_fw = new FileWriter("./output/context/" + pathname , false);
         BufferedWriter context_bw = new BufferedWriter(context_fw);
         PrintWriter context_out = new PrintWriter(context_bw);
 
 
-        directoryName = PATH.concat("method_names/"+new_path);
+        directoryName = PATH.concat("output/method_names/"+new_path);
         directory = new File(directoryName);
         if (! directory.exists()){
             directory.mkdirs();
@@ -64,21 +64,33 @@ public class Main {
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
         }
-        FileWriter m_fw = new FileWriter("./method_names/" + pathname , false);
+        FileWriter m_fw = new FileWriter("./output/method_names/" + pathname , false);
         BufferedWriter m_bw = new BufferedWriter(m_fw);
         PrintWriter m_out = new PrintWriter(m_bw);
 
 
+//        new VoidVisitorAdapter<Object>() {
+//            @Override
+//            public void visit(ClassOrInterfaceDeclaration n, Object arg) {
+//                super.visit(n, arg);
+////                System.out.println(" * " + n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t")+ "\n");
+////                System.out.println(" * " + n.getDeclarationAsString());
+////                m_out.println(n.getDeclarationAsString());
+////                m_out.println(n.getNameAsString());
+//                context_out.println(n.getNameAsString());
+////                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t"));
+//            }
+//        }.visit(StaticJavaParser.parse(filePath), null);
         new VoidVisitorAdapter<Object>() {
             @Override
-            public void visit(ClassOrInterfaceDeclaration n, Object arg) {
+            public void visit(ConstructorDeclaration n, Object arg) {
                 super.visit(n, arg);
 //                System.out.println(" * " + n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t")+ "\n");
 //                System.out.println(" * " + n.getDeclarationAsString());
-//                m_out.println(n.getDeclarationAsString());
-//                m_out.println(n.getNameAsString());
-                context_out.println(n.getNameAsString());
-//                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", "\t"));
+                m_out.println(n.getDeclarationAsString());
+                context_out.println(n.getDeclarationAsString());
+                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", " [EOL] ") + " <line_num>: " + n.getBegin().get().line + "," +  n.getEnd().get().line );
+
             }
         }.visit(StaticJavaParser.parse(filePath), null);
 
@@ -90,10 +102,12 @@ public class Main {
 //                System.out.println(" * " + n.getDeclarationAsString());
                 m_out.println(n.getDeclarationAsString());
                 context_out.println(n.getDeclarationAsString());
-                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", " [EOL] ") + " <line_num>: " + n.getName().getBegin().get().line);
+                out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", " [EOL] ") + " <line_num>: " + n.getBegin().get().line + "," +  n.getEnd().get().line );
 
             }
         }.visit(StaticJavaParser.parse(filePath), null);
+
+
 
         CompilationUnit cu = StaticJavaParser.parse(filePath);
         for (TypeDeclaration<?> typeDec : cu.getTypes()) {
