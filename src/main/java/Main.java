@@ -18,17 +18,22 @@ import java.util.stream.Stream;
 import java.io.*;
 
 public class Main {
-    static String path = "lang3/";
+    static String path = "input/csv_tests/";
     static final PrinterConfiguration prettyPrinterNoCommentsConfiguration = new DefaultPrinterConfiguration().removeOption(new DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.PRINT_COMMENTS));
 //    static final PrinterConfiguration prettyPrinterNoCommentsConfiguration = new DefaultPrinterConfiguration();
 
-    static public void listClasses(String filePath, String pathname) throws IOException {
+    static public void listClasses(String file_content, String pathname) throws IOException {
         String PATH = "./";
-        String new_path = "";
-        for(int i=0; i < pathname.split("/").length - 1; i++){
-            new_path += pathname.split("/")[i]+"/";
+        String directory_path = "";
+        String file_path = "";
+        for(int i=1; i < pathname.split("/").length - 1; i++){
+            directory_path += pathname.split("/")[i]+"/";
         }
-        String directoryName = PATH.concat("output/methods/"+new_path);
+        for(int i=1; i < pathname.split("/").length ; i++){
+            file_path += pathname.split("/")[i]+"/";
+        }
+
+        String directoryName = PATH.concat("output/methods/"+directory_path);
         File directory = new File(directoryName);
         System.out.println(directoryName);
         if (! directory.exists()){
@@ -38,12 +43,12 @@ public class Main {
             // use directory.mkdirs(); here instead.
         }
 
-        FileWriter fw = new FileWriter("./output/methods/" + pathname , false);
+        FileWriter fw = new FileWriter("./output/methods/" + file_path , false);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter out = new PrintWriter(bw);
 
 
-        directoryName = PATH.concat("output/context/"+new_path);
+        directoryName = PATH.concat("output/context/"+directory_path);
         directory = new File(directoryName);
         if (! directory.exists()){
             directory.mkdirs();
@@ -51,12 +56,12 @@ public class Main {
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
         }
-        FileWriter context_fw = new FileWriter("./output/context/" + pathname , false);
+        FileWriter context_fw = new FileWriter("./output/context/" + file_path , false);
         BufferedWriter context_bw = new BufferedWriter(context_fw);
         PrintWriter context_out = new PrintWriter(context_bw);
 
 
-        directoryName = PATH.concat("output/method_names/"+new_path);
+        directoryName = PATH.concat("output/method_names/"+directory_path);
         directory = new File(directoryName);
         if (! directory.exists()){
             directory.mkdirs();
@@ -64,7 +69,7 @@ public class Main {
             // If you require it to make the entire directory path including parents,
             // use directory.mkdirs(); here instead.
         }
-        FileWriter m_fw = new FileWriter("./output/method_names/" + pathname , false);
+        FileWriter m_fw = new FileWriter("./output/method_names/" + file_path , false);
         BufferedWriter m_bw = new BufferedWriter(m_fw);
         PrintWriter m_out = new PrintWriter(m_bw);
 
@@ -92,7 +97,7 @@ public class Main {
                 out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", " [EOL] ") + " <line_num>: " + n.getBegin().get().line + "," +  n.getEnd().get().line );
 
             }
-        }.visit(StaticJavaParser.parse(filePath), null);
+        }.visit(StaticJavaParser.parse(file_content), null);
 
         new VoidVisitorAdapter<Object>() {
             @Override
@@ -105,11 +110,11 @@ public class Main {
                 out.println(n.toString(Main.prettyPrinterNoCommentsConfiguration).replace("\n", " [EOL] ") + " <line_num>: " + n.getBegin().get().line + "," +  n.getEnd().get().line );
 
             }
-        }.visit(StaticJavaParser.parse(filePath), null);
+        }.visit(StaticJavaParser.parse(file_content), null);
 
 
 
-        CompilationUnit cu = StaticJavaParser.parse(filePath);
+        CompilationUnit cu = StaticJavaParser.parse(file_content);
         for (TypeDeclaration<?> typeDec : cu.getTypes()) {
             for (BodyDeclaration<?> member : typeDec.getMembers()) {
                 member.toFieldDeclaration().ifPresent(field -> {
