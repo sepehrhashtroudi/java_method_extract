@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 import java.io.*;
 
 public class Main {
-    static String path = "input/csv_tests/";
+    static String path = "input/jacksonCore_tests/";
     static final PrinterConfiguration prettyPrinterNoCommentsConfiguration = new DefaultPrinterConfiguration().removeOption(new DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.PRINT_COMMENTS));
 //    static final PrinterConfiguration prettyPrinterNoCommentsConfiguration = new DefaultPrinterConfiguration();
 
